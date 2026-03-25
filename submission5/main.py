@@ -20,3 +20,18 @@ new_line = "Новий рядок додано"
 new_content = "Файл перезаписано"
 
 # Реалізуйте завдання тут
+import os
+
+if not os.path.exists(input_file):
+    print(f"Файл {input_file} не знайдено.")
+else:
+    with open(input_file, 'r', encoding='utf-8') as infile:
+        lines = infile.readlines()
+
+    # Видаляємо тільки порожні рядки
+    processed_lines = [line for line in lines if line.strip() != ""]
+
+    with open(output_file, 'w', encoding='utf-8') as outfile:
+        outfile.writelines(processed_lines)
+
+    print(f"Обробка завершена. Результат у файлі {output_file}.")
